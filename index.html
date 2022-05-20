@@ -44,10 +44,10 @@ var plane = new THREE.Mesh( geometry, material );
 plane.position.z = -5;
 scene.add( plane );
  //角すい〜円すい
-var coneGeometry = new THREE.ConeGeometry( 0.5, 1, 5 ); 
+var coneGeometry = new THREE.ConeGeometry( 1, 1, 5 ); 
 var coneMaterial = new THREE. MeshPhongMaterial( {color: 0x0000ff} );
 var cone = new THREE.Mesh( coneGeometry, coneMaterial );
-cone.position.set( 0, 0, -5 );
+cone.position.set( -3, 0, -5 );
 scene.add( cone );
 //球
 var sphereGeometry = new THREE.SphereGeometry( 0.5, 32, 32 ); 
@@ -58,6 +58,11 @@ scene.add( sphere );
     // 平行光源
     var directionalLight = new THREE.DirectionalLight(0xffffff);
     directionalLight.position.set(1, 1, 1);
+    var light = new THREE.DirectionalLight(0xffffff);
+    light.position.set(-3, -3, -3);
+    scene.add(light);
+    var light = new THREE.DirectionalLight(0xffffff);
+    light.position.set(3, 3, 3);
     // シーンに追加
     scene.add(directionalLight);
   
