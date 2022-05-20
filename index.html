@@ -31,6 +31,11 @@
     var box = new THREE.Mesh(geometry, material);
     box.position.z = -5;
     scene.add(box);
+    
+    const gridHelper = new THREE.GridHelper(2,10); // size, step
+    scene.add(gridHelper);
+    const axisHelper = new THREE.AxisHelper(2); //軸の長さ X：赤、Y：緑、z：青
+    scene.add(axisHelper);
   
   // 平面を作成
 var geometry = new THREE.PlaneGeometry( 1, 2, 3 );
@@ -38,12 +43,6 @@ var material = new THREE.MeshPhongMaterial( {color: 0x0000ff} );
 var plane = new THREE.Mesh( geometry, material );
 plane.position.z = -5;
 scene.add( plane );
-// 箱を作成
-var geometry = new THREE.BoxGeometry(1, 1, 1);
-var material = new THREE.MeshPhongMaterial({ color: 0x0000ff });
-var box = new THREE.Mesh(geometry, material);
-box.position.z = 5;
-scene.add(box);
  //角すい〜円すい
 var coneGeometry = new THREE.ConeGeometry( 0.5, 1, 5 ); 
 var coneMaterial = new THREE. MeshPhongMaterial( {color: 0x0000ff} );
@@ -69,6 +68,8 @@ scene.add( sphere );
       // 箱を回転させる
       box.rotation.x += 0.01;
       box.rotation.y += 0.01;
+      cone.rotation.x += 0.01;
+      cone.rotation.y += 0.01;
   
       renderer.render(scene, camera);
     };
