@@ -30,6 +30,30 @@
     box.position.z = -5;
     scene.add(box);
   
+  // 平面を作成
+var geometry = new THREE.PlaneGeometry( 1, 2, 3 );
+var material = new THREE.MeshPhongMaterial( {color: 0x0000ff} );
+var plane = new THREE.Mesh( geometry, material );
+plane.position.z = -5;
+scene.add( plane );
+// 箱を作成
+var geometry = new THREE.BoxGeometry(1, 1, 1);
+var material = new THREE.MeshPhongMaterial({ color: 0x0000ff });
+var box = new THREE.Mesh(geometry, material);
+box.position.z = 5;
+scene.add(box);
+ //角すい〜円すい
+var coneGeometry = new THREE.ConeGeometry( 0.5, 1, 5 ); 
+var coneMaterial = new THREE. MeshPhongMaterial( {color: 0x0000ff} );
+var cone = new THREE.Mesh( coneGeometry, coneMaterial );
+cone.position.set( 0, 0, -5 );
+scene.add( cone );
+//球
+var sphereGeometry = new THREE.SphereGeometry( 0.5, 32, 32 ); 
+var sphereMaterial = new THREE. MeshPhongMaterial( {color: 0x0000ff,wireframe: true} );
+var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+sphere.position.set( 3, 0, -5 );
+scene.add( sphere ); 
     // 平行光源
     var directionalLight = new THREE.DirectionalLight(0xffffff);
     directionalLight.position.set(1, 1, 1);
