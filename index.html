@@ -15,9 +15,6 @@
     const wrap = new THREE.Group(); 
     wrap.add(mesh); // 任意のObject3Dを追加 
 　　scene.add(wrap); 
-    const group = new THREE.Group();
-    // 3D空間にグループを追加する
-    scene.add(group);
     // レンダラーを作成
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(width, height);
@@ -52,6 +49,10 @@ var material = new THREE.MeshPhongMaterial( {color: 0x0000ff} );
 var plane = new THREE.Mesh( geometry, material );
 plane.position.z = -5;
 scene.add( plane );
+      // グループを作る
+      const group = new THREE.Group();
+      // 3D空間にグループを追加する
+        scene.add(group);
  //角すい〜円すい
 var coneGeometry = new THREE.ConeGeometry( 1, 1, 5 ); 
 var coneMaterial = new THREE. MeshPhongMaterial( {color: 0x0000ff} );
