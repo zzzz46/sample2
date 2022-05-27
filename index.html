@@ -15,6 +15,9 @@
     const wrap = new THREE.Object3D(); 
     wrap.add(mesh); // 任意のObject3Dを追加 
     scene.add(wrap); 
+    const wrap = new THREE.Group(); 
+    wrap.add(mesh); // 任意のObject3Dを追加 
+　　scene.add(wrap); 
     const group = new THREE.Group();
     // 3D空間にグループを追加する
     scene.add(group);
@@ -58,12 +61,6 @@ var coneMaterial = new THREE. MeshPhongMaterial( {color: 0x0000ff} );
 var cone = new THREE.Mesh( coneGeometry, coneMaterial );
 cone.position.set( 1.5, 0, -5 );
 scene.add( cone );
-//球
-var sphereGeometry = new THREE.SphereGeometry( 0.5, 32, 32 ); 
-var sphereMaterial = new THREE. MeshPhongMaterial( {color: 0x0000ff,wireframe: true} );
-var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-sphere.position.set( 3, 0, -5 );
-scene.add( sphere ); 
 for (let i = 0; i < 10; i++) {
   // 球体を作成
   const material = new THREE.MeshNormalMaterial();
