@@ -1,102 +1,73 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
- <script src="https://unpkg.com/three@0.137.4/build/three.min.js"></script>
-    <script src="https://unpkg.com/three@0.137.4/examples/js/controls/OrbitControls.js"></script>
-</head>
-<body>
-<script>
-  var init = function() {
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://unpkg.com/three@0.140.2/build/three.min.js"></script>
+    <script>
+      // ページの読み込みを待つ
+      window.addEventListener('DOMContentLoaded', init);
 
-    var width = 800,
-        height = 600;
-    const wrap = new THREE.Group(); 
-    wrap.add(mesh); // 任意のObject3Dを追加 
-　　scene.add(wrap); 
-    // レンダラーを作成
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(width, height);
-    document.body.appendChild(renderer.domElement);
-    // レンダラー：シャドウを有効にする
-        renderer.shadowMap.enabled = true;
-  
-    // シーンを作成
-    var scene = new THREE.Scene();
-  
-    // カメラを作成
-    var camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
-    camera.position.set(-100, 150, 500);
-     // カメラコントローラーを作成
-        const controls = new THREE.OrbitControls(camera, document.body); 
-  
-    // 箱を作成
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
-    var material = new THREE.MeshPhongMaterial({ color: 0x0000ff });
-    var box = new THREE.Mesh(geometry, material);
-    box.position.z = -5;
-    scene.add(box);
-    
-    const gridHelper = new THREE.GridHelper(2,10); // size, step
-    scene.add(gridHelper);
-    const axisHelper = new THREE.AxisHelper(2); //軸の長さ X：赤、Y：緑、z：青
-    scene.add(axisHelper);
-  
-  // 平面を作成
-var geometry = new THREE.PlaneGeometry( 1, 2, 3 );
-var material = new THREE.MeshPhongMaterial( {color: 0x0000ff} );
-var plane = new THREE.Mesh( geometry, material );
-plane.position.z = -5;
-scene.add( plane );
-      // グループを作る
-      const group = new THREE.Group();
-      // 3D空間にグループを追加する
+      function init() {
+        // サイズを指定
+        const width = 960;
+        const height = 540;
+
+        // レンダラーを作成
+        const renderer = new THREE.WebGLRenderer({
+          canvas: document.querySelector('#myCanvas'),
+        });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(width, height);
+
+        // シーンを作成
+        const scene = new THREE.Scene();
+
+        // カメラを作成
+        const camera = new THREE.PerspectiveCamera(45, width / height);
+        camera.position.set(-100, 150, 500);
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+        // 地面を作成
+        scene.add(new THREE.GridHelper(600));
+        scene.add(new THREE.AxesHelper(300));
+
+        // グループを作る
+        const group = new THREE.Group();
+        // 3D空間にグループを追加する
         scene.add(group);
- //角すい〜円すい
-var coneGeometry = new THREE.ConeGeometry( 1, 1, 5 ); 
-var coneMaterial = new THREE. MeshPhongMaterial( {color: 0x0000ff} );
-var cone = new THREE.Mesh( coneGeometry, coneMaterial );
-cone.position.set( 1.5, 0, -5 );
-scene.add( cone );
-for (let i = 0; i < 10; i++) {
-  // 球体を作成
-  const material = new THREE.MeshNormalMaterial();
-  const geometry = new THREE.SphereGeometry(30, 30, 30);
-  const mesh = new THREE.Mesh(geometry, material);
 
-  // 配置座標を計算
-  const radian = i / 10 * Math.PI * 2;
-  mesh.position.set(
-    200 * Math.cos(radian), // X座標
-    30, // Y座標
-    200 * Math.sin(radian) // Z座標
-  );
+        for (let i = 0; i < 10; i++) {
+          // 直方体を作成
+          const material = new THREE.MeshNormalMaterial();
+          const geometry = new THREE.SphereGeometry(30, 30, 30);
+          const mesh = new THREE.Mesh(geometry, material);
 
-  // グループに追加する
-  group.add(mesh);
-}
-    // 平行光源
-    var directionalLight = new THREE.DirectionalLight(0xffffff);
-    directionalLight.position.set(1, 1, 1);
-    var light = new THREE.DirectionalLight(0xffffff);
-    light.position.set(-3, 0, -5);
-    scene.add(light);
-    // シーンに追加
-    scene.add(directionalLight);
-  
-    tick();
-// 毎フレーム時に実行されるループイベントです
-function tick() {
-  group.rotation.y += 0.01;
+          // 配置座標を計算
+          const radian = (i / 10) * Math.PI * 2;
+          mesh.position.set(
+            200 * Math.cos(radian), // X座標
+            30, // Y座標
+            200 * Math.sin(radian) // Z座標
+          );
 
-  // レンダリング
-  renderer.render(scene, camera);
-  requestAnimationFrame(tick);
-}
-  window.addEventListener('DOMContentLoaded', init);
-</script>
-</body>
-</html>
+          // グループに追加する
+          group.add(mesh);
+        }
+
+        tick();
+
+        // 毎フレーム時に実行されるループイベントです
+        function tick() {
+          group.rotation.y += 0.01;
+
+          // レンダリング
+          renderer.render(scene, camera);
+          requestAnimationFrame(tick);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="myCanvas"></canvas>
   </body>
 </html>
