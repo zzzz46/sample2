@@ -62,7 +62,7 @@
         scene.add(box);   // シーンに追加
 
         // 球を作成
-        var geometry2 = new THREE.ConeGeometry(0.1, 0.5, 32 ); ;
+        var geometry2 = new THREE.SphereGeometry(0.1, 32, 32 ); ;
         var Sphere = new THREE.Mesh(geometry2, mat);
         Sphere.position.set(0,0,0);
         scene.add(Cone);
