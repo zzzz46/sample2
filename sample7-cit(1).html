@@ -49,12 +49,12 @@
 
         // テクスチャー読み込み
         var textureLoader = new THREE.TextureLoader();  
-        var texture = textureLoader.load("cit.png");
+        var texture = textureLoader.load("img1.png");
         var mat = new THREE.MeshPhongMaterial();
         mat.map = texture;
 
         // 箱を作成
-        var geometry = new THREE.SphereGeometry( 0.1, 32, 32);
+        var geometry = new THREE.SphereGeometry( 0.2, 32, 32);
         //var material = new THREE.MeshPhongMaterial({ color: 0xffffff });
         //var box = new THREE.Mesh(geometry, material);
         var box = new THREE.Mesh(geometry, mat);
