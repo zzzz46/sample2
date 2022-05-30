@@ -49,7 +49,7 @@
 
         //6面分のテクスチャー読み込み
         var materials = [
-          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img1.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/imgb1.png")}),
           new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img2.png")}),
           new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img3.png")}),
           new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img4.png")}),
@@ -60,7 +60,7 @@
         var material = new THREE.MeshFaceMaterial(materials); // マテリアルをセット
 
         // 箱を作成
-        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        var geometry = new THREE.SphereGeometry( 0.1, 32, 32 );
         var box = new THREE.Mesh(geometry, material);
         scene.add(box);
 
